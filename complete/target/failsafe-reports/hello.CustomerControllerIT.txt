@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: hello.CustomerControllerIT
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 7.399 sec <<< FAILURE! - in hello.CustomerControllerIT
+getHello(hello.CustomerControllerIT)  Time elapsed: 0.419 sec  <<< FAILURE!
+java.lang.AssertionError: 
+Expected: "{\"customerID\":111,\"name\":\"TEST CUSTOMER WB\",\"acctNo\":0,\"address\":null,\"city\":null,\"state\":null,\"zip\":null,\"lob\":null}"
+     but: was "{\"timestamp\":1507113985800,\"status\":404,\"error\":\"Not Found\",\"message\":\"No message available\",\"path\":\"/1\"}"
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.junit.Assert.assertThat(Assert.java:956)
+	at org.junit.Assert.assertThat(Assert.java:923)
+	at hello.CustomerControllerIT.getHello(CustomerControllerIT.java:39)
+
