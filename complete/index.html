@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Service</title>
+<script type="text/javascript" language="javascript">
+
+    function send()
+    {
+
+        var custid = document.getElementById("custid").value;
+
+        URL = "http://localhost:8080/customerservice/" + custid;  //Your URL
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+        xmlhttp.open("GET", URL, false);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+        xmlhttp.send(null);
+        var det = eval( "(" +  xmlhttp.responseText + ")");
+        custname.value = det.name;
+      
+    }
+    function callbackFunction(xmlhttp) 
+    {
+
+    }
+  </script>
+</head>
+<body >
+<h1>Customer Service Demo </h1>
+   <table>
+   <tr>
+       <td>Enter Customer ID :  </td>
+       <td><input type="text" id="custid" size="10"/>  
+       <input type="button" value="Get Details" onclick="javascript:send()"/>
+   </tr>
+   <tr>
+       <td>Customer Name :  </td>
+       <td><input type="text" readonly="true" id="custname" size="20"/> </td>
+   </tr>
+
+   </table>
+  </body>
+</body>
+</html>
