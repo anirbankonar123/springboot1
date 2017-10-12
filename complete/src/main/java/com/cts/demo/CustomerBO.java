@@ -1,6 +1,10 @@
 
 package com.cts.demo;
 
+/**
+ * Business Object storing Customer Information
+ * 
+ */
 public class CustomerBO {
 
     protected long customerID;
