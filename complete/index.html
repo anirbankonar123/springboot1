@@ -10,7 +10,7 @@
 
         var custid = document.getElementById("custid").value;
 
-        URL = "http://localhost:8080/customerservice/" + custid;  //Your URL
+        URL = "http://localhost:8080/customerservice/customer/" + custid;  
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
         xmlhttp.open("GET", URL, false);

@@ -15,6 +15,11 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * Integration Test for CustomerService
+ * Path to REST Resource, CustomerBO : /customerservice
+ * 
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CustomerControllerIT {
@@ -29,9 +34,14 @@ public class CustomerControllerIT {
 
     @Before
     public void setUp() throws Exception {
-        this.base = new URL("http://localhost:" + port + "/customerservice/1");
+        this.base = new URL("http://localhost:" + port + "/customerservice/customer/1");
     }
 
+    /**
+     * Integration Test for CustomerService, getCustomer
+     * Path to REST Resource, CustomerBO : /customerservice/customer/{customerId}
+     * 
+     */
     @Test
     public void getCustomer() throws Exception {
         ResponseEntity<String> response = template.getForEntity(base.toString(),
