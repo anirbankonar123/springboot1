@@ -1,11 +1,13 @@
 
-package com.cts.demo;
+package com.cts.demo.domain;
+
+import java.io.Serializable;
 
 /**
  * Business Object storing Customer Information
  * 
  */
-public class CustomerBO {
+public class CustomerBO implements Serializable{
 
     protected long customerID;
 
@@ -22,7 +24,18 @@ public class CustomerBO {
 
     protected String lob;
   
-
+    public CustomerBO(){
+    	
+    }
+    
+    public CustomerBO(long id){
+    	this.customerID = id;
+    }
+    
+    public CustomerBO(long id, String name){
+    	this.customerID = id;
+    	this.name = name;
+    }
     /**
      * Gets the value of the customerID property.
      * 
