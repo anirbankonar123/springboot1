@@ -1,4 +1,5 @@
 com.cts.demo
 com.cts.demo.controller
 com.cts.demo.domain
+com.cts.demo.exception
 com.cts.demo.services

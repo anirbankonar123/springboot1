@@ -3,13 +3,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Customer Service</title>
+<style type="text/css">
+   .hidden {
+        display: none;
+   {
+   .visible {
+        display: block;
+   }
+</style>
 <script type="text/javascript" language="javascript">
 
     function send()
     {
 
         var custid = document.getElementById("custid").value;
-
+        var errorDiv = document.getElementById("error");
+        
         URL = "http://localhost:8080/customerservice/customer/" + custid;  
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
@@ -19,6 +28,15 @@
         xmlhttp.send(null);
         var det = eval( "(" +  xmlhttp.responseText + ")");
         custname.value = det.name;
+ 
+        errorCode = det.errorCode;
+        if (errorCode=="100"){
+        	errorDiv.setAttribute('class', 'visible');
+        	code.value=det.errorCode;
+        	msg.value=det.errorMessage
+        	custname.value="";
+        }
+
       
     }
     function callbackFunction(xmlhttp) 
@@ -41,6 +59,10 @@
    </tr>
 
    </table>
+	<div class="hidden" id="error" >
+	  Error Code :  <input type="text" readonly="true" id="code" size="20"/> <br/>
+	  Error Message : <input type="text" readonly="true" id="msg" size="50"/>
+	</div>
   </body>
 </body>
 </html>

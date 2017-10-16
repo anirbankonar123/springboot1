@@ -35,7 +35,20 @@ public class CustomerControllerTest {
     public void getCustomer() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/customerservice/customer/1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"customerID\":111,\"name\":\"TEST CUSTOMER WB\",\"acctNo\":0,\"address\":null,\"city\":null,\"state\":null,\"zip\":null,\"lob\":null}"));
+                .andExpect(content().json("{\"customerID\":1,\"name\":\"John\",\"acctNo\":0,\"address\":null,\"city\":null,\"state\":null,\"zip\":null,\"lob\":null}"));
+                
+    }
+    
+    /**
+     * Unit Test for CustomerService getCustomer (negative scenario)
+     * Path to REST Resource, CustomerBO : /customerservice/customer/{customerId}
+     * 
+     */
+    @Test
+    public void getCustomerNegative() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/customerservice/customer/11").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(content().json("{\"errorCode\":\"100\",\"errorMessage\":\"Customer Not Found\"}"));
                 
     }
 }

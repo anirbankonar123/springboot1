@@ -34,7 +34,7 @@ public class CustomerControllerIT {
 
     @Before
     public void setUp() throws Exception {
-        this.base = new URL("http://localhost:" + port + "/customerservice/customer/1");
+        this.base = new URL("http://localhost:" + port + "/customerservice/customer");
     }
 
     /**
@@ -44,8 +44,22 @@ public class CustomerControllerIT {
      */
     @Test
     public void getCustomer() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString(),
+    	String testUrl = base+"/1";
+        ResponseEntity<String> response = template.getForEntity(testUrl.toString(),
                 String.class);
-        assertThat(response.getBody(), equalTo("{\"customerID\":111,\"name\":\"TEST CUSTOMER WB\",\"acctNo\":0,\"address\":null,\"city\":null,\"state\":null,\"zip\":null,\"lob\":null}"));
+        assertThat(response.getBody(), equalTo("{\"customerID\":1,\"name\":\"John\",\"acctNo\":0,\"address\":null,\"city\":null,\"state\":null,\"zip\":null,\"lob\":null}"));
+    }
+    
+    /**
+     * Integration Test for CustomerService, getCustomer (negative Scenario)
+     * Path to REST Resource, CustomerBO : /customerservice/customer/{customerId}
+     * 
+     */
+    @Test
+    public void getCustomerNegative() throws Exception {
+    	String testUrl = base+"/11";
+        ResponseEntity<String> response = template.getForEntity(testUrl.toString(),
+                String.class);
+        assertThat(response.getBody(), equalTo("{\"errorCode\":\"100\",\"errorMessage\":\"Customer Not Found\"}"));
     }
 }
